@@ -8,4 +8,42 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'category_id',
+        'brand_id',
+        'name',
+        'slug',
+        'images',
+        'description',
+        'price',
+        'is_active',
+        'is_featured',
+        'in_stock',
+        'on_sale',
+    ];
+
+    protected $casts = [
+        'images' => 'array',
+    ];
+
+    // Define the relationship with the Category model
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    // Define the relationship with the Brand model
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    
+    // Define the relationship with the OrderItem model
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+
 }

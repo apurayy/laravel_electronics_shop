@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'image',
+        'is_active',
+    ];
+
+    // Define the relationship with the Product model
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
